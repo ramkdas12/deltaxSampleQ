@@ -24,46 +24,40 @@ section {
     }
     .content {
       color: $white;
-      @media only screen and (max-width: 767px) {
+      display: block;
+      padding-top: 20px;
+      
+      select {
+        max-height: 40px;
+      }
+      .button {
+        margin: 20px 0;
+        padding: 0px 15px;
+        font-size: 15px;
+        line-height: 30px;
+        background: black;
+        color: white;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        text-decoration: none;
+        display: inline-block;
+      }
+      .form-fields {
         width: 100%;
+        border-radius: 5px;
+        min-height: 30px;
+        padding: 5px 10px;
       }
-      @media only screen and (min-width: 768px) {
-        display: table-row;
-      }
-      .left {
-        padding: 15px 0;
-        @media only screen and (max-width: 767px) {
-          width: 100%;
-        }
-        @media only screen and (min-width: 768px) {
-          display: table-cell;
-          width: 30%;
-          text-align: right;
-          vertical-align: middle;
-          padding-right: 30px;
+      input.ng-invalid {
+        & + .underline {
+          background: $red;
         }
       }
-      .right {
-        padding: 15px 0;
-        @media only screen and (max-width: 767px) {
-          width: 100%;
-        }
-        @media only screen and (min-width: 768px) {
-          display: table-cell;
-          width: 50%;
-          vertical-align: middle;
-          padding-left: 30px;
-          text-align: left;
-        }
-        select {
-          max-height: 40px;
-        }
-        .form-fields {
-          width: 100%;
-          border-radius: 5px;
-          min-height: 30px;
-          padding: 5px 10px;
-        }
+      .underline {
+        height: 1px;
+        width: 100%;
+        background: $grey-border;
       }
     }
   }

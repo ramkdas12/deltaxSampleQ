@@ -91,5 +91,20 @@ router.get('/producers', (req, res) => {
   });
 });
 
+router.post('/addactor', (req, res) => {
+  response.data = ['success'];
+  res.json(response);
+});
+
+router.post('/addproducer', (req, res) => {
+  response.data = ['success'];
+  res.json(response);
+});
+
+router.post('/addmovie', (req, res) => {
+  response.data = ['success'];
+  res.json(response);
+});
+
 //export
 module.exports = router;

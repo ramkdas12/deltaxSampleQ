@@ -1,6 +1,6 @@
 export class Actor {
   name: string;
   sex: string;
-  dob: Date;
+  dob: string;
   bio: string;
 }

@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Add new {{data.type}}?</h1>
+<div mat-dialog-content>
+  <form class="form-inline" #dataForm="ngForm">
+    <div class="content" *ngFor="let entry of formData | keys">
+      <div *ngIf="componentSelector(entry, formData) === 'input'">
+        <mat-form-field class="example-full-width">
+          <input type="text" matInput placeholder="{{entry.key | uppercase}}" [(ngModel)]="formData[entry.key]" [formControl]="name" [errorStateMatcher]="matcher">
+        </mat-form-field> 
+      </div>
+      <div *ngIf="componentSelector(entry, formData) === 'textarea'">
+        <mat-form-field class="example-full-width">
+          <textarea matInput [(ngModel)]="formData[entry.key]" class="form-fields" rows="4" cols="50" placeholder="{{entry.key | uppercase}}"
+            [formControl]="bio" [errorStateMatcher]="matcher">
+        </textarea>
+        </mat-form-field> 
+      </div>
+      <div *ngIf="componentSelector(entry, formData) === 'date'">
+        <mat-form-field class="example-full-width">
+          <input type="date" matInput placeholder="{{entry.key | uppercase}}" [(ngModel)]="formData[entry.key]" [formControl]="dob"
+            [errorStateMatcher]="matcher">
+        </mat-form-field>
+      </div>
+      <div *ngIf="componentSelector(entry, formData) === 'radio'" class="marginBot20">
+        <mat-radio-group [(ngModel)]="formData[entry.key]" [formControl]="sex">
+          <mat-radio-button value="Male">Male</mat-radio-button>
+          <mat-radio-button value="Female">Female</mat-radio-button>
+          <mat-radio-button value="Other">Other</mat-radio-button>
+        </mat-radio-group>
+        <div class="underline"></div>
+      </div>
+    </div>
+  </form>
+</div>
+<div mat-dialog-actions>
+  <div class="button">
+    <button mat-button (click)="onNoClick()">Cancel</button>
+  </div>
+  <div class="button">
+    <button mat-button (click)="submitForm()" cdkFocusInitial>Ok</button>
+  </div>
+  <div class="clearBoth"></div>
+</div>

@@ -15,4 +15,9 @@ export class DataService {
       .map(response => this.result = response.json().data);
   }
 
+  postData(url, data) {
+    return this._http.post('/api/add'+ url, data)
+      .map(response => this.result = response.json());
+  }
+
 }

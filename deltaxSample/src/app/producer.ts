@@ -1,6 +1,6 @@
 export class Producer {
   name: string;
   sex: string;
-  dob: Date;
+  dob: string;
   bio: string;
 }

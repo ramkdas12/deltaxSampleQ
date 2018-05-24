@@ -1,0 +1,53 @@
+@import './../../colors.scss';
+.button {
+  float: left;
+  text-align: center;
+  width: 50%;
+  padding: 10px; 
+  button {
+    padding: 0px 15px;
+    font-size: 15px;
+    line-height: 30px;
+    background: $black;
+    color: $white;
+    outline: none;
+    box-shadow: none;
+    border: none;
+    text-decoration: none;
+    display: inline-block;
+    width: 100%;
+    @media only screen and (max-width: 767px) {
+      height: 40px;
+      width: 100%;
+      text-align: center;
+    }
+    &:hover {
+      background: $nav-background;
+      cursor: pointer;
+    }
+    &:disabled {
+      background: $disabled;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.marginBot20 {
+  margin-bottom: 20px;
+}
+
+.marginBot20 .ng-invalid {
+  & + .underline {
+    background: $red;
+  }
+}
+.underline {
+  height: 1px;
+  width: 100%;
+  background: $grey-border;
+  margin-top: 20px;
+}
+
+.clearBoth {
+  clear: both;
+}
