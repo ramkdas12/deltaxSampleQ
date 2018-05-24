@@ -1,0 +1,117 @@
+@import './../../colors.scss';
+section {
+  overflow-y: scroll;
+  height: 88vh;
+  overflow-x: hidden;
+  /* text-align: center; */
+  margin: 0 auto;
+  padding: 20px;
+  border-top: 1px solid $grey-border;
+  h2 {
+    text-align: center;
+    color: $white;
+    text-decoration: underline;
+    text-decoration-color: $grey-border;
+  }
+  .movie {
+    color: $white;
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+    @media only screen and (min-width: 768px) {
+      display: table;
+      width: 100%;
+    }
+    .content {
+      color: $white;
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+      }
+      @media only screen and (min-width: 768px) {
+        display: table-row;
+      }
+      .left {
+        padding: 15px 0;
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+        }
+        @media only screen and (min-width: 768px) {
+          display: table-cell;
+          width: 30%;
+          text-align: right;
+          vertical-align: middle;
+          padding-right: 30px;
+        }
+      }
+      .right {
+        padding: 15px 0;
+        @media only screen and (max-width: 767px) {
+          width: 100%;
+        }
+        @media only screen and (min-width: 768px) {
+          display: table-cell;
+          width: 50%;
+          vertical-align: middle;
+          padding-left: 30px;
+          text-align: left;
+        }
+        select {
+          max-height: 40px;
+        }
+        .form-fields {
+          width: 100%;
+          border-radius: 5px;
+          min-height: 30px;
+          padding: 5px 10px;
+        }
+      }
+    }
+  }
+  .foot {
+    @media only screen and (max-width: 767px) {
+      width: 100%;
+    }
+    @media only screen and (min-width: 768px) {
+      display: block;
+      width: 100%;
+      height: 40px;
+    }
+    .button {
+      @media only screen and (max-width: 767px) {
+        width: 100%;
+        margin: 20px 0;
+      }
+      @media only screen and (min-width: 768px) {
+        float: left;
+        text-align: center;
+        width: 30%;
+      }
+      button,
+      a {
+        padding: 0px 15px;
+        font-size: 15px;
+        line-height: 30px;
+        background: $black;
+        color: $white;
+        outline: none;
+        box-shadow: none;
+        border: none;
+        text-decoration: none;
+        display: inline-block;
+        @media only screen and (max-width: 767px) {
+          height: 40px;
+          width: 100%;
+          text-align: center;
+        }
+        &:hover {
+          background: $nav-background;
+          cursor: pointer;
+        }
+        &:disabled {
+          background: $disabled;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}

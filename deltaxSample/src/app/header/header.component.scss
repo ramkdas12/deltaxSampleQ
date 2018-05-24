@@ -1,0 +1,9 @@
+@import './../../colors.scss';
+.header {
+  height: 12vh;
+  h1 {
+    color: $white;
+    text-align: center;
+    font-size: 30px;
+  }
+}

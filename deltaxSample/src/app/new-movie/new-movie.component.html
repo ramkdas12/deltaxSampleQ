@@ -1,0 +1,57 @@
+<section class="newMovie">
+  <h2>Add new movie</h2>
+  <form class="form-inline" [(formGroup)]="movieForm" (ngSubmit)="submitForm(movieForm)">
+    <div class="movie">
+      <div class="content" *ngFor="let entry of movie | keys">
+        <div class="left">
+          {{entry.key | uppercase}}
+        </div>
+        <div class="right">
+          <div *ngIf="componentSelector(entry, movie) === 'input'">
+            <input class="form-fields" type="text" formControlName="name" placeholder="{{entry.key | uppercase}}" name="entry.key" [(ngModel)]="movie[entry.key]">
+          </div>
+          <div *ngIf="componentSelector(entry, movie) === 'number'">
+            <input class="form-fields" type="number" [(ngModel)]="movie[entry.key]" placeholder="{{entry.key | uppercase}}" name="entry.key"
+              step="1" formControlName="yor">
+          </div>
+          <div *ngIf="componentSelector(entry, movie) === 'textarea'">
+            <textarea class="form-fields" rows="4" cols="50" placeholder="{{entry.key | uppercase}}" name="entry.key" formControlName="plot"
+              [(ngModel)]="movie[entry.key]">
+            </textarea>
+          </div>
+          <div *ngIf="componentSelector(entry, movie) === 'file'">
+            <input class="form-fields" type="file" (change)="onChange($event)" placeholder="{{entry.key | uppercase}}" name="entry.key"
+              formControlName="file" [(ngModel)]="movie[entry.key]">
+          </div>
+          <div *ngIf="componentSelector(entry, movie) === 'multiSelect'">
+            <select class="form-fields" name="entry.key" multiple formControlName="actors" [(ngModel)]="movie[entry.key]">
+              <option *ngFor="let o of actors" value="{{o.name}}">
+                {{o.name}}
+              </option>
+            </select>
+          </div>
+          <div *ngIf="componentSelector(entry, movie) === 'select'">
+            <select class="form-fields" formControlName="producer" name="entry.key" [(ngModel)]="movie[entry.key]">
+              <option *ngFor="let o of producers" value="{{o.name}}">
+                {{o.name}}
+              </option>
+            </select>
+          </div>
+        </div>
+        <div class="clearBoth"></div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="button">
+        <button type="button" (click)="resetForm()">Reset</button>
+      </div>
+      <div class="button">
+        <button type="submit" [(disabled)]="!movieForm.valid">Submit</button>
+      </div>
+      <div class="button">
+        <a type="button" routerLink="/home">Cancel</a>
+      </div>
+      <div class="clearBoth"></div>
+    </div>
+  </form>
+</section>
