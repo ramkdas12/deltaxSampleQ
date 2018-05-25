@@ -1,0 +1,42 @@
+<section class="movieList">
+  <div class="latestMovies">
+    <h2>Latest Movies <span class="button"> <a routerLink="/newMovie">Add New</a></span></h2>
+    <div class="movies">
+      <div class="movie" *ngFor="let movie of movieList">
+        <div class="content">
+          <div class="left">
+            <img [src]="movie.poster">
+          </div>
+          <div class="right">
+            <div class="head">
+              <div class="name">
+                <b>Title </b>
+                <span>{{movie.name}}</span>
+                <span class="editButton">
+                  <button type="button" (click)='editMovie(movie)'>Edit</button>
+                </span>
+              </div>
+              <div class="dateReleased">
+                <b>Released </b>
+                <span>{{movie.yor}}</span>
+              </div>
+              <div class="producer">
+                <b>Producer </b>
+                <span>{{movie.producer}}</span>
+              </div>
+              <div class="actors">
+                <b>Actors </b>
+                <span class="actor" *ngFor="let actor of movie.actors">{{actor}},&nbsp;</span>
+              </div>
+              <div class="plot">
+                <b>Plot </b>
+                <span>{{movie.plot}}</span>
+              </div>
+            </div>
+          </div>
+          <div class="clearBoth"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

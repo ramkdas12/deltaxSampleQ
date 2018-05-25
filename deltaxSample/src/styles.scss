@@ -1,0 +1,64 @@
+@import './colors.scss';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+
+body {
+  background: url(./assets/images/backGround-design.jpg) no-repeat scroll center top #000000;
+  margin: 0;
+  overflow: hidden;
+  padding: 0;
+  width: auto;
+  z-index: 3;
+  scrollbar-base-color: $scrollColor;
+  scrollbar-face-color: $scrollColor;
+  scrollbar-3dlight-color: $scrollColor;
+  scrollbar-highlight-color: $scrollColor;
+  scrollbar-track-color: $scrollColor;
+  scrollbar-arrow-color: $scrollColor;
+  scrollbar-shadow-color: $scrollColor;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+  width: 1vw; 
+  position: fixed;
+  right: 5px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+  box-shadow: inset 0 0 6px rgba(0,0,0,0.5)
+}
+
+.mat-form-field {
+  display: block !important;
+}
+
+.mat-form-field-invalid .mat-input-element,
+.mat-warn .mat-input-element {
+  caret-color: $mtIdColor !important;
+}
+
+.mat-form-field-label, .mat-select-value-text {
+  color: $white !important;
+}
+
+.mat-form-field-invalid .mat-form-field-label {
+  color: $mtIdColor !important;
+}
+.mat-form-field-underline {
+  background-color: $grey-border !important;
+}
+
+.mat-form-field-invalid .mat-input-element, .mat-warn .mat-input-element {
+  color: $mtIdColor !important;
+}

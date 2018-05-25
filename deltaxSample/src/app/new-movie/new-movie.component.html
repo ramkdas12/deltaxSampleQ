@@ -1,0 +1,65 @@
+<section class="newMovie">
+  <h2>Add new movie</h2>
+  <form class="form-inline" #movieForm="ngForm" (ngSubmit)="submitForm(movieForm)">
+    <div class="movie">
+      <div class="content" *ngFor="let entry of movie | keys">
+        <div *ngIf="componentSelector(entry, movie) === 'input'">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="{{entry.key | uppercase}}" [(ngModel)]="movie[entry.key]" [formControl]="name" [errorStateMatcher]="matcher">
+          </mat-form-field>
+        </div>
+        <div *ngIf="componentSelector(entry, movie) === 'number'">
+          <mat-form-field class="example-full-width">
+            <input type="number" matInput placeholder="{{entry.key | uppercase}}" [(ngModel)]="movie[entry.key]" [formControl]="yor"
+              [errorStateMatcher]="matcher">
+          </mat-form-field>
+        </div>
+        <div *ngIf="componentSelector(entry, movie) === 'textarea'">
+          <mat-form-field class="example-full-width">
+            <textarea matInput [(ngModel)]="movie[entry.key]" class="form-fields" rows="4" cols="50" placeholder="{{entry.key | uppercase}}"
+              [formControl]="plot" [errorStateMatcher]="matcher">
+            </textarea>
+          </mat-form-field>
+        </div>
+        <div *ngIf="componentSelector(entry, movie) === 'file'">
+          <label class="file-label">{{entry.key | uppercase}}</label>
+          <input class="form-fields" type="file" (change)="onChange($event, movieForm)" placeholder="{{entry.key | uppercase}}" name="entry.key"
+            [formControl]="file" [(ngModel)]="movie[entry.key]">
+          <div class="underline"></div>
+        </div>
+        <div *ngIf="componentSelector(entry, movie) === 'multiSelect'">
+          <mat-form-field>
+            <mat-select placeholder="{{entry.key | uppercase}}" [formControl]="actor" multiple [(ngModel)]="movie[entry.key]">
+              <mat-option *ngFor="let option of actorName" [value]="option">{{option}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button class="button" type="button" (click)="openDialog(actorName, 'actor')">New Actor</button>
+        </div>
+        <div *ngIf="componentSelector(entry, movie) === 'select'">
+          <mat-form-field class="example-full-width">
+            <input type="text" placeholder="{{entry.key | uppercase}}" [(ngModel)]="movie[entry.key]" matInput [formControl]="producer"
+              [matAutocomplete]="auto">
+            <mat-autocomplete #auto="matAutocomplete">
+              <mat-option *ngFor="let option of filteredProducers | async" [value]="option">
+                {{ option }}
+              </mat-option>
+            </mat-autocomplete>
+          </mat-form-field>
+          <button class="button" type="button" (click)="openDialog(producerName, 'producer')">New producer</button>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="button">
+        <button type="button" (click)="resetForm()">Reset</button>
+      </div>
+      <div class="button">
+        <button type="submit">Submit</button>
+      </div>
+      <div class="button">
+        <a type="button" routerLink="/home">Cancel</a>
+      </div>
+      <div class="clearBoth"></div>
+    </div>
+  </form>
+</section>
