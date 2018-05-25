@@ -34,6 +34,8 @@ import { KeysPipe } from './keys.pipe';
 import { FileValueAccessorDirective } from './file-value-accessor.directive';
 import { ModalDialogComponent } from './modal-dialog/modal-dialog.component';
 
+import { ShareDataService } from './share-data.service';
+
 const appRoutes: Routes = [
   {
     path: 'home',
@@ -82,7 +84,8 @@ const appRoutes: Routes = [
     MatRadioModule
   ],
   providers: [
-    DataService
+    DataService,
+    ShareDataService
   ],
   bootstrap: [AppComponent]
 })

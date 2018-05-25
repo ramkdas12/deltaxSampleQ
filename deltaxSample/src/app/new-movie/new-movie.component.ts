@@ -20,6 +20,10 @@ import { KeysPipe } from './../keys.pipe';
 import { FileValueAccessorDirective } from './../file-value-accessor.directive';
 import { ModalDialogComponent } from './../modal-dialog/modal-dialog.component';
 
+import { ShareDataService } from './../share-data.service';
+
+import { Subscription } from 'rxjs/Subscription';
+
 /** Error when invalid control is dirty, touched, or submitted. */
 export class MyErrorStateMatcher implements ErrorStateMatcher {
   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
@@ -56,6 +60,8 @@ export class NewMovieComponent implements OnInit {
   producerName: Array<string>;
   actorName: Array<string>
 
+  isEdit = false;
+
   name = new FormControl('', [Validators.required, Validators.pattern('^[A-Za-z0-9 ]*[A-Za-z0-9][A-Za-z0-9 ]*$')]);
   yor = new FormControl('', [Validators.required, Validators.max(2099), Validators.min(1900)]);
   plot = new FormControl('', [Validators.required, Validators.minLength(50)]);
@@ -63,7 +69,9 @@ export class NewMovieComponent implements OnInit {
   actor = new FormControl('', [Validators.required, Validators.minLength(1)]);
   producer = new FormControl('', [Validators.required, Validators.nullValidator]);
 
-  constructor(private _dataService: DataService, public dialog: MatDialog) {
+  subscription: Subscription;
+
+  constructor(private _dataService: DataService, public dialog: MatDialog, private _shareData: ShareDataService) {
     this.movie = new Movie();
     this.movie.name = '';
     this.movie.yor = 2018;
@@ -74,6 +82,19 @@ export class NewMovieComponent implements OnInit {
   }
 
   ngOnInit() {
+
+    var x = this._shareData.getData()
+    console.log('subscribed');
+    console.log(x);
+    if (x) {
+      this.movie.name = x.name;
+      this.movie.yor = parseInt(x.yor);
+      this.movie.producer = x.producer;
+      this.movie.actors = x.actors;
+      this.movie.plot = x.plot;
+      this.movie.poster = '';
+      this.isEdit = true;
+    }
 
     this._dataService.getData('actors')
       .subscribe(res => {
@@ -101,6 +122,11 @@ export class NewMovieComponent implements OnInit {
             map(val => this.filterProducer(val))
           );
       });
+  }
+
+  ngOnDestroy() {
+    // unsubscribe to ensure no memory leaks
+    this._shareData.clearData();
   }
 
   filterProducer(val: string): string[] {
@@ -168,20 +194,17 @@ export class NewMovieComponent implements OnInit {
     }
   }
 
-  addNewActor() {
-    console.log(this.actors);
-  }
-
-  addNewProducer() {
-    console.log(this.producers);
-  }
-
   submitForm(form: NgForm) {
     if (!this.validateForm()) {
       console.log(this.movie);
-      this._dataService.postData('movie', this.movie)
+      let url = '';
+      if (this.isEdit) {
+        url = 'editMovie';
+      } else {
+        url = 'movie';
+      }
+      this._dataService.postData(url, this.movie)
         .subscribe(res => {
-          console.log(res);
           if (res.status === 200) {
             console.log('Hello');
           }
@@ -202,6 +225,7 @@ export class NewMovieComponent implements OnInit {
   }
 
   resetForm() {
+    this.movie = new Movie();
     this.movie.name = '';
     this.movie.yor = 2018;
     this.movie.poster = '';

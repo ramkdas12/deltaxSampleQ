@@ -106,5 +106,10 @@ router.post('/addmovie', (req, res) => {
   res.json(response);
 });
 
+router.post('/addeditMovie', (req, res) => {
+  response.data = ['success'];
+  res.json(response);
+});
+
 //export
 module.exports = router;
